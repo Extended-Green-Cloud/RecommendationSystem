@@ -188,9 +188,9 @@ public class BookingWebsocketClient extends GuiWebSocketClient {
 		handleProposalsRule.setExecute("""
 				order = facts.get(FactTypeConstants.RESULT);
 				bestProposal = facts.get(FactTypeConstants.CFP_BEST_MESSAGE);
-				restaurantData = MessageReader.readMessageContent(bestProposal, Class.forName("org.greencloud.strategyinjection.agentsystem.domain.RestaurantData"));
+				restaurantData = MessageReader.readMessageContent(bestProposal, Class.forName("org.article.strategyinjection.agentsystem.domain.RestaurantData"));
 				if($instruction) {
-				agentNode.passRestaurantMessageToClient("$msgLiteral".replace("$strategy", controller.getRuleSets().get((int) facts.get(FactTypeConstants.STRATEGY_IDX)).getName()).replace("$price", restaurantData.getPrice().toString()).replace("$additionalInfo", restaurantData.getRestaurantInformation().toString()));
+				agentNode.passRestaurantMessageToClient("$msgLiteral".replace("$strategy", controller.getRuleSets().get((int) facts.get(FactTypeConstants.RULE_SET_IDX)).getName()).replace("$price", restaurantData.getPrice().toString()).replace("$additionalInfo", restaurantData.getRestaurantInformation().toString()));
 				agentProps.getRestaurantForOrder().put(order.getOrderId(), bestProposal);}
 				else { agent.send(MessageBuilder.builder(bestProposal.getOntology(), ACLMessage.REJECT_PROPOSAL).copy(proposalToReject.createReply()).withPerformative(ACLMessage.REJECT_PROPOSAL).withObjectContent(ACLMessage.REJECT_PROPOSAL).build()); agentNode.passRestaurantMessageToClient("No restaurants that fulfill additional instructions were found!");}
 				""".replace("$instruction", instructions).replace("$msgLiteral", responseMsgLiteral));

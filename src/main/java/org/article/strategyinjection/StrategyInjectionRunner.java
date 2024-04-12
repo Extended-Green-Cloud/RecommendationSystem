@@ -20,7 +20,6 @@ import org.jrba.utils.factory.AgentControllerFactory;
 import org.jrba.utils.factory.AgentControllerFactoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Profile;
 
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
@@ -31,7 +30,6 @@ import jade.wrapper.StaleProxyException;
 /**
  * Runner of the rule set injection testing system
  */
-@Profile("dev")
 public class StrategyInjectionRunner {
 
 	public static final String RESTAURANT = "org.article.strategyinjection.agentsystem.agents.restaurant.RestaurantAgent";
